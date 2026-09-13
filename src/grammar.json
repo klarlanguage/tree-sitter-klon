@@ -1,0 +1,93 @@
+{
+  "$schema": "https://tree-sitter.github.io/tree-sitter/assets/schemas/grammar.schema.json",
+  "name": "klon",
+  "rules": {
+    "source_file": {
+      "type": "STRING",
+      "value": "hello"
+    },
+    "comment": {
+      "type": "TOKEN",
+      "content": {
+        "type": "CHOICE",
+        "members": [
+          {
+            "type": "SEQ",
+            "members": [
+              {
+                "type": "STRING",
+                "value": "//"
+              },
+              {
+                "type": "PATTERN",
+                "value": ".*"
+              }
+            ]
+          },
+          {
+            "type": "SEQ",
+            "members": [
+              {
+                "type": "STRING",
+                "value": "/*"
+              },
+              {
+                "type": "PATTERN",
+                "value": "[^*]*\\*+([^/*][^*]*\\*+)*"
+              },
+              {
+                "type": "STRING",
+                "value": "/"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "int_literal": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "hex_literal"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "decimal_literal"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "binary_literal"
+        }
+      ]
+    },
+    "hex_literal": {
+      "type": "PATTERN",
+      "value": "0x[A-Fa-f0-9_]+"
+    },
+    "binary_literal": {
+      "type": "PATTERN",
+      "value": "0b[0-1_]+"
+    },
+    "decimal_literal": {
+      "type": "PATTERN",
+      "value": "[0-9_]+"
+    }
+  },
+  "extras": [
+    {
+      "type": "PATTERN",
+      "value": "\\s"
+    },
+    {
+      "type": "SYMBOL",
+      "name": "comment"
+    }
+  ],
+  "conflicts": [],
+  "precedences": [],
+  "externals": [],
+  "inline": [],
+  "supertypes": [],
+  "reserved": {}
+}
