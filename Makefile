@@ -1,5 +1,5 @@
 LANGUAGE_NAME := tree-sitter-klon
-HOMEPAGE_URL := https://github.com/tree-sitter/tree-sitter-klon
+HOMEPAGE_URL := https://github.com/klarlanguage/tree-sitter-klon
 VERSION := 0.1.0
 DESCRIPTION := Klon grammar for tree-sitter
 
